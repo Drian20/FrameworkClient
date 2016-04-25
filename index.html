@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Cliente Framework</title>
+	<link rel="stylesheet" href="styles/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+$(document).ready(function (){
+	$("#users").click(function () {
+		$.ajax({
+            type: 'GET',
+            url: "http://sites.local/Framework/api/users",
+            success: function(result){
+            	$("#showusers").html(result);
+            }
+        });
+	});
+	$("#new").click(function () {
+		$.ajax({
+            type: 'POST',
+            url: "http://sites.local/Framework/api/users",
+            data: $("#insertusers").serialize(),
+            success: function(data){
+            	$("#showusers").html(data);
+            }
+        });
+	});
+});
+</script>
+</head>
+<body>
+	<header>
+		
+	</header>
+
+	<div class="boton" id="users">Ver usuarios</div>
+
+	<div id="showusers"></div>
+	<div id="udusers"></div>
+
+	<form id="insertusers" method="POST" accept-charset="utf-8">
+		Username: <input type="text" name="username">
+		Name: <input type="text" name="name">
+		Lastname: <input type="text" name="lastname">
+		Password: <input type="text" name="password">
+		Email: <input type="text" name="email">
+		Country: <input type="text" name="country">
+		Rol: <input type="text" name="rol">
+	</form>
+	<div class="boton" id="new">Insertar usuario</div>
+
+	<footer>
+		
+	</footer>
+</body>
+</html>
